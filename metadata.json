@@ -1,0 +1,33 @@
+{
+  "replacing": {
+  },
+  "maintainer_email": "stephen@2600hz.com",
+  "description": "Installs FreeSWITCH",
+  "groupings": {
+  },
+  "recommendations": {
+  },
+  "attributes": {
+  },
+  "suggestions": {
+  },
+  "dependencies": {
+  },
+  "recipes": {
+    "freeswitch": "Install Freeswitch",
+    "freeswitch::centos": "Install Freeswitch on Centos/RHEL",
+    "freeswitch::whistle": "Install Freeswitch for Whistle",
+    "freeswitch::ubuntu": "Install Freeswitch on Ubuntu/Debain"
+  },
+  "conflicting": {
+  },
+  "platforms": {
+  },
+  "version": "0.1.0",
+  "license": "Apache 2.0",
+  "long_description": "",
+  "name": "freeswitch",
+  "providing": {
+  },
+  "maintainer": "Stephen Lum"
+}

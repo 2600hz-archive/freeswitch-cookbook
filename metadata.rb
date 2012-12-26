@@ -1,0 +1,11 @@
+maintainer       "Stephen Lum"
+maintainer_email "stephen@2600hz.com"
+license          "Apache 2.0"
+description      "Installs FreeSWITCH"
+version          "1.0.14"
+recipe		 "freeswitch", "Install Freeswitch"
+recipe		 "freeswitch::ubuntu", "Install Freeswitch on Ubuntu/Debain"
+recipe		 "freeswitch::centos", "Install Freeswitch on Centos/RHEL"
+recipe		 "freeswitch::whistle", "Install Freeswitch for Whistle"
+
+depends "bluepill"

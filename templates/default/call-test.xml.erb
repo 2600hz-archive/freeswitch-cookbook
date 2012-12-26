@@ -1,0 +1,12 @@
+<include>
+  <context name="test_calling">
+        <extension>
+      <condition>
+       <!-- <action application="info"/> -->
+        <action application="curl"><![CDATA[http://monitcalls.2600hz.com/monit_calls.php?box=<%= node[:fqdn] %>&test_id=${test_id}&test=answering&number_dialed=${sip_to_uri}]]></action>
+        <action application="sleep" data="${destination_number}"/>
+        <action application="hangup"/>
+      </condition>
+        </extension>
+ </context>
+</include>

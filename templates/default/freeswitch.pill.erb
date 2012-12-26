@@ -1,0 +1,26 @@
+class EmailNotifier < Bluepill::Trigger
+  def initialize(process, options = {})
+    @email = options.delete(:email)
+    @notify_on = options.delete(:notify_on)
+    super
+  end
+  def notify(transition)
+    if @notify_on.include?(transition.to_name)
+      IO.popen("sendmail -t", "w") do |x|
+        x.puts "To: #{@email}"
+        #your other mail headers
+        x.puts
+        x.puts "Your process #{self.process.name} has restarted at #{Time.now}"
+      end
+    end
+  end
+end
+
+Bluepill.application("freeswitch") do |app|
+  app.process("freeswitch") do |process|
+    process.pid_file = "/var/run/freeswitch/freeswitch.pid"
+    process.start_command = "su - freeswitch -s /bin/bash -c '/usr/bin/freeswitch -nc -nonat'"
+#    process.checks :cpu_usage, :every => 10.seconds, :below => 10, :times => 3
+    process.checks :email_notifier, :email => :root, :notify_on => [ :down, :starting, :stopping, :restarting, :unmonitored ]
+  end
+end

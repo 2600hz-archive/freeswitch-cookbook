@@ -1,0 +1,28 @@
+<configuration name="acl.conf" description="Network Lists">
+    <network-lists>
+        <list name="trusted" default="deny">
+            <node type="allow" cidr="72.249.14.242/32"/>      <!--gw01-car.dal.us.icall.net-->
+            <node type="allow" cidr="8.19.97.6/32"/>          <!--sbc01-car.dal.us.icall.net-->
+            <node type="allow" cidr="208.85.184.0/24"/>          <!--velocity.net-->
+            <node type="allow" cidr="216.82.224.202/32"/>        <!-- bandwidth.com -->
+            <node type="allow" cidr="67.231.8.195/32"/>        <!-- bandwidth.com -->
+            <node type="allow" cidr="67.231.8.196/32"/>        <!-- bandwidth.com -->
+            <node type="allow" cidr="67.231.4.195/32"/>        <!-- bandwidth.com -->
+            <node type="allow" cidr="67.231.4.196/32"/>        <!-- bandwidth.com -->
+            <node type="allow" cidr="64.2.142.27/32"/>        <!-- vitality -->
+            <node type="allow" cidr="216.115.69.144/32"/>        <!-- flowroute -->
+            <node type="allow" cidr="70.167.153.130/32"/>        <!-- flowroute #2-->
+            <node type="allow" cidr="74.121.80.14/32"/>        <!-- starview -->
+            <node type="allow" cidr="66.42.120.154/32"/>        <!-- pacwest -->
+            <node type="allow" cidr="64.136.174.30/32"/>        <!-- voip innovations -->
+            <node type="allow" cidr="64.136.174.31/32"/>        <!-- voip innovations -->
+            <node type="allow" cidr="64.136.174.35/32"/>        <!-- voip innovations -->
+            <X-PRE-PROCESS cmd="include" data="/etc/freeswitch/carriers.xml"/>
+        </list>
+        <list name="authoritative" default="deny">
+          <% @opensips.each do |fqdn, ipaddress| -%>
+            <node type="allow" cidr="<%= ipaddress %>/32"/> <!--<%= fqdn %>-->
+          <% end %>
+        </list>
+    </network-lists>
+</configuration>
